@@ -91,7 +91,7 @@ case $key in
         echo "Well, remember to clear the pacman caches before export distributable"
         ;;
     *)
-        pacman -Scc << EOF
+        pacman -Scc > /dev/null 2>&1 << EOF
 Y
 Y
 EOF
