@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+
+if [[ $1 != "" && $1 != "$0" && -d $1 ]]; then
+    SourceDirectory="$1"
+    shift 1
+elif [[ -d "$PWD/bdf-pkg" ]]; then
+    SourceDirectory="$PWD/bdf-pkg"
+    shift 1
+elif [[ -d "$HOME/bdf-pkg" ]]; then
+    SourceDirectory="$HOME/bdf-pkg"
+    shift 1
+else
+    echo "Please provide the path to BDF source directory as the first argument"
+    exit 1
+fi
+
+if [[ $1 != "" && $1 != "$0" && $1 != "-"* ]]; then
+    BuildDirectory="$1"
+    shift 1
+else
+    BuildDirectory="$SourceDirectory/../bdf-pkg-build"
+fi
+
+InstallPrefix="/usr/bin/bdf-install"
+
+echo "========================================= BDF BUILD CONFIG ========================================="
+echo "        BDF source directory is: '$SourceDirectory'"
+echo "        BDF build directory is: '$BuildDirectory'"
+echo "        BDF will be installed to (not configurable):'$InstallPrefix'"
+echo "        Extra build option(s) are: " "$@"
+echo "        Following compilers will be used (not configurable): gcc, g++, gfortran"
+echo "        Linear algebra library used (not configurable): openblas64"
+echo "===================================================================================================="
+
+echo "Are you happy with current build configuration? Press 'y' to continue or 'n' to exit."
+read -r -s -n 1 key
+case $key in
+    y|Y)
+        ;;
+    n|N)
+        echo "Exiting..."
+        exit 1
+        ;;
+    *)
+        echo "Invalid input. Please press 'y' or 'n'."
+        ;;
+esac
+
+(cmake -S "$SourceDirectory" \
+       -B "$BuildDirectory" \
+       -DCMAKE_C_COMPILER=gcc \
+       -DCMAKE_CXX_COMPILER=g++ \
+       -DCMAKE_Fortran_COMPILER=gfortran \
+       -DENABLE_OPENMP=YES \
+       -DENABLE_64BIT_INTEGERS=YES \
+       -DMATH_INCLUDE="-I/usr/include/openblas64/" \
+       -DMATH_LIB="-L/usr/lib/ -llapacke64 -lcblas64 -llapack64 -lblas64" \
+       -DCMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT=NO \
+       -DCMAKE_INSTALL_PREFIX="$InstallPrefix" \
+       "$@" \
+&& cmake --build "$BuildDirectory" -- -j \
+&& cmake --install "$BuildDirectory") \
+|| exit 1
+
+echo "Delete the build directory now? [Y/n]"
+read -r -s -n 1 key
+case $key in
+    n|N)
+        echo "Well, please remember to delete the build directory before export distributable"
+        ;;
+    *)
+        rm -rf "$BuildDirectory"
+        ;;
+esac
+
+echo "Delete the source directory now? [Y/n]"
+read -r -s -n 1 key
+case $key in
+    n|N)
+        echo "Well, remember to delete the source directory before export distributable"
+        ;;
+    *)
+        rm -rf "$SourceDirectory"
+        ;;
+esac
+
+echo "Delete the pacman caches now? [Y/n]"
+read -r -s -n 1 key
+case $key in
+    n|N)
+        echo "Well, remember to clear the pacman caches before export distributable"
+        ;;
+    *)
+        pacman -Scc << EOF
+Y
+Y
+EOF
+        ;;
+esac
