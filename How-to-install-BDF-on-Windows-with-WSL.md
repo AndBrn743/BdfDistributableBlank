@@ -21,7 +21,7 @@ Execute the following command in Windows PowerShell
  ```
 or
  ``` PowerShell
- wsl --import BdfServer <InstallLocation> BdfDistributableBlank.tar --version 2
+ wsl --import BdfServer <InstallLocation> BdfDistributableBlank.tar.gz --version 2
  ```
 
 To make the new distro has been successfully imported one may run
@@ -124,9 +124,9 @@ wsl --shutdown
     
 ##### 3.3.1. To export the Distributable as a tarball, run the following command in Windows PowerShell
 ``` PowerShell
-wsl --export BdfServer BdfServer.tar
+wsl --export BdfServer BdfServer.tar.gz
 ```
-The output file `BdfServer.tar` is the distributable
+The output file `BdfServer.tar.gz` is the distributable
    
 ##### 3.3.2. To export the Distributable as a virtual disk, run the following command in Windows PowerShell
 ``` PowerShell
@@ -138,7 +138,7 @@ The output file `BdfServer.vhdx` is the distributable
 
 To deploy the Distributable on user machines, run the following command in Windows PowerShell
 ``` PowerShell
-wsl --import BdfServer <InstallLocation> BdfServer.tar --version 2 
+wsl --import BdfServer <InstallLocation> BdfServer.tar.gz --version 2 
 ```
 or
 ``` PowerShell
@@ -225,7 +225,7 @@ wsl -d BdfServer --cd ~/tasks/ explorer.exe .
  ```
 或
  ``` PowerShell
- wsl --import BdfServer <InstallLocation> BdfDistributableBlank.tar --version 2
+ wsl --import BdfServer <InstallLocation> BdfDistributableBlank.tar.gz --version 2
  ```
 
 要确认新的distro 以被成功注册可以运行下面的命令
@@ -329,9 +329,9 @@ wsl --shutdown
 
 ##### 3.3.1. 如需 tar 格式的可分发镜像请在 Windows PowerShell 中运行下面的命令
 ``` PowerShell
-wsl --export BdfServer BdfServer.tar
+wsl --export BdfServer BdfServer.tar.gz
 ```
-输出文件 `BdfServer.tar` 就是可分发镜像
+输出文件 `BdfServer.tar.gz` 就是可分发镜像
 
 ##### 3.3.2. 如需 virtual disk (vhdx) 格式的可分发镜像请在 Windows PowerShell 中运行下面的命令
 ``` PowerShell
@@ -343,7 +343,7 @@ wsl --export BdfServer BdfServer.vhdx --vhd
 
 在将可分发镜像部署在用户计算机上时需运行下面的 Windows PowerShell 命令
 ``` PowerShell
-wsl --import BdfServer <InstallLocation> BdfServer.tar --version 2 
+wsl --import BdfServer <InstallLocation> BdfServer.tar.gz --version 2 
 ```
 或
 ``` PowerShell
