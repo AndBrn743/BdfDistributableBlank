@@ -36,7 +36,7 @@ One should expect info like the following to be printed (notice the very last li
    BdfServer              Stopped         2
  ```
 
-> * BdfDistributableBlank can be obtained from [here](https://add.link.here/bdb).
+> * BdfDistributableBlank can be obtained from [here](https://github.com/AndBrn743/BdfDistributableBlank/releases).
 > * Please replace `<InstallLocation>` with the desired installation location.
 > * Instead of `BdfServer` you can any name you like.
 
@@ -147,7 +147,7 @@ wsl --import BdfServer <InstallLocation> BdfServer.vhdx --version 2 --hvd
 
 > * Please replace `<InstallLocation>` with the desired installation location.
 > * Instead of `BdfServer` you can any name you like.
-> * One may BDF as norm as this point. However, it's highly recommend to add a non-root account and set it as a default login account. The instructions can be found [here](https://wsldl-pg.github.io/ArchW-docs/How-to-Setup/). 
+> * One may BDF as norm as this point. However, it's highly recommend to add a non-root account and set it as a default login account. The instructions can be found [here](https://wsldl-pg.github.io/ArchW-docs/How-to-Setup/#setup-after-install). 
 
 ## Frequently Used Commands
 * To run `BdfServer` commands through PowerShell, e.g., `htop`, use the following command
@@ -240,7 +240,7 @@ wsl -d BdfServer --cd ~/tasks/ explorer.exe .
    BdfServer              Stopped         2
  ```
 
-> * BdfDistributableBlank 可从[此处](https://add.link.here/bdb)获取.
+> * BdfDistributableBlank 可从[此处](https://github.com/AndBrn743/BdfDistributableBlank/releases)获取.
 > * 请将 `<InstallLocation>` 替换为真正的安装路径.
 > * 您不一定需要将其命名为 `BdfServer`.
 
@@ -352,7 +352,7 @@ wsl --import BdfServer <InstallLocation> BdfServer.vhdx --version 2 --hvd
 
 > * 请将 `<InstallLocation>` 替换为真正的安装路径.
 > * 您不一定需要将其命名为 BdfServer.
-> * 由此, 用户便可正常使用 BDF. 然而, 我们强烈建议用户在 `BdfServer` 添加一非 root 账户并将该账户设为默认登录账户. 该步骤的指南可参见[此处](https://wsldl-pg.github.io/ArchW-docs/How-to-Setup/).
+> * 由此, 用户便可正常使用 BDF. 然而, 我们强烈建议用户在 `BdfServer` 添加一非 root 账户并将该账户设为默认登录账户. 该步骤的指南可参见[此处](https://wsldl-pg.github.io/ArchW-docs/locale/zh-CN/How-to-Setup/#%E5%AE%8C%E6%88%90%E5%AE%89%E8%A3%85%E5%90%8E%E7%9A%84%E6%93%8D%E4%BD%9C).
 
 ## 常用命令
 * 若需通过 PowerShell 来间接运行一个 BdfServer 上的命令, 如, `htop`, 可以使用下面的命令
@@ -402,6 +402,5 @@ wsl -d BdfServer --cd ~/tasks/ explorer.exe .
 
 ## 备注
 * BDF Distributable Blank (BDB) 是一类似于可分发的BDF WSL 镜像 (BD). 它们的区别在于 BDB 上没有安装 BDF, 其上装有的是编译和安装 BDF 所需的依赖库及软件. 因此 BDB 的文件大小远远小于 BD 且可被重用数年 (我们仍然建议每年更新 BDB 一次), 而 BD 文件很大且每次 BDF 更新时都应被完全替换.
-* BDF Distributable Blank (BDB) 可从 `<Add Hosting Server Here>` 获取.
 * 请 *勿* 为 `root` 账号设置密码. 请 *勿* 添加任何额外的账号.
 * 由于可分发镜像中不仅包含 BDF 且包含它的依赖项, 可分发镜像文件的的大小可达 10 GB. 分发者应合理选择分发介质.
