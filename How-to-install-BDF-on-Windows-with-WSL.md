@@ -5,10 +5,10 @@ The Windows Subsystem for Linux (WSL) enables users to install the Beijing Densi
 
 ## Prerequisites
 The present document assumes that your machine
-* Have WSL enabled, and
-* Have WSL updated to a version that supports WSL 2 (Optional, but highly recommended.)
+* Has WSL enabled, and
+* Has been updated to a version of WSL that supports WSL 2 (optional, but highly recommended)
 
-> * Please reference to [Install WSL | Microsoft Learn](https://learn.microsoft.com/en-us/windows/wsl/install) for WSL installation instruction.
+> * Please refer to [Install WSL | Microsoft Learn](https://learn.microsoft.com/en-us/windows/wsl/install) for WSL installation instructions.
 > * Virtualization technology must be enabled in BIOS or UEFI to install WSL. To check if virtualization technology was enabled, see Windows Task Manager > Performance > CPU > Virtualization.
 > * We recommend WSL 2 over WSL 1. If you want to use WSL 1, there are a few extra steps you'll need to take. These aren't included in the current version of the document, but you can find out more in the [ArchWSL Documentation](https://wsldl-pg.github.io/ArchW-docs/Known-issues/). For the comparison between WSL 1 and WSL 2, see [Comparing WSL Versions | Microsoft Learn](https://learn.microsoft.com/en-us/windows/wsl/compare-versions). 
 
@@ -24,7 +24,7 @@ or
  wsl --import BdfServer <InstallLocation> BdfDistributableBlank.tar.gz --version 2
  ```
 
-To make the new distro has been successfully imported one may run
+To confirm that the new distro has been successfully imported, one may run
 `wsl -l -v`.
 One should expect info like the following to be printed (notice the very last line)
  ``` console
@@ -38,7 +38,7 @@ One should expect info like the following to be printed (notice the very last li
 
 > * BdfDistributableBlank can be obtained from [here](https://github.com/AndBrn743/BdfDistributableBlank/releases).
 > * Please replace `<InstallLocation>` with the desired installation location.
-> * Instead of `BdfServer` you can any name you like.
+> * Instead of `BdfServer`, you can use any name you like.
 
 ### 2. Download, Compile, and Install BDF
 
@@ -57,7 +57,7 @@ In Linux Bash shell, execute
 pacman -Syyu
 ```
 and follow the instructions shown on the screen
-> * For more information about `pacman`, please reference to [ArchLinux wiki](https://wiki.archlinux.org/title/Pacman)
+> * For more information about `pacman`, please refer to the [ArchLinux wiki](https://wiki.archlinux.org/title/Pacman)
 
 #### 2.3. Download or copy the BDF source files to BdfServer
 
@@ -77,11 +77,11 @@ e.g.,
 ``` bash
 cp /mnt/d/data/bdf-pkg.tar.gz . 
 ```
-if `bdf-pkg.tar.gz` can be found in Windows directory of `D:\data\bdf-pkg.tar.gz`
+if `bdf-pkg.tar.gz` can be found at the Windows path `D:\data\bdf-pkg.tar.gz`
 
 #### 2.4. Compile and install BDF
 
-BDF Distributable Blank comes with `compile_and_install_bdf` script. By executing the `compile_and_install_bdf` script in Linux Bash shell, BDF will be automatically compiled with the bundled linear algebra library, and installed BDF in a suitable directory. If the BDF source folder is named `bdf-pkg` and located under present working directory, or the home directory of current user, simply run the following command:
+BDF Distributable Blank comes with the `compile_and_install_bdf` script. By executing the `compile_and_install_bdf` script in the Linux Bash shell, BDF will be automatically compiled with the bundled linear algebra library and installed in a suitable directory. If the BDF source folder is named `bdf-pkg` and is located under the present working directory, or under the home directory of the current user, simply run the following command:
 ``` bash
 compile_and_install_bdf
 ```
@@ -94,15 +94,15 @@ Custom build flags can be passed to `compile_and_install_bdf` directly, e.g.
 compile_and_install_bdf -DENABLE_LICENSE=YES -DONLY_BDFPRO=YES
 ```
 
-> * Please execute `compile_and_install_bdf` script with the root account
-> * `compile_and_install_bdf` script does not support user defined install-directory. Install BDF to a non-default installation path will cause the bundled BDF run script `bdf` to break
-> * After compilation and installation was completed, `compile_and_install_bdf` ask one if the deletion of the build and source directories, as well as the pacman caches. Choose `Y` for all of them unless there is reason not to do so 
+> * Please execute the `compile_and_install_bdf` script with the root account
+> * The `compile_and_install_bdf` script does not support a user-defined install directory. Installing BDF to a non-default path will cause the bundled BDF run script `bdf` to break
+> * After compilation and installation are complete, `compile_and_install_bdf` asks whether to delete the build and source directories, as well as the pacman caches. Choose `Y` for all of them unless there is a reason not to do so
 
 #### 2.5. Cleanup
-* Delete the BDF build folder if did do so already
-* Delete the BDF source folder if did do so already
-* Clear pacman caches if did do so already (execute `pacman -Scc` and choose `Y` for all)
-* Delete IDE and code editor (e.g., Visual Studio, Visual Studio Code, CLion, Rider, and PyCharm) caches if one has connected them to `BdfServer`
+* Delete the BDF build folder if you have not done so already
+* Delete the BDF source folder if you have not done so already
+* Clear the pacman caches if you have not done so already (execute `pacman -Scc` and choose `Y` for all)
+* Delete IDE and code editor (e.g., Visual Studio, Visual Studio Code, CLion, Rider, and PyCharm) caches if you have connected them to `BdfServer`
 * Delete other temporary files and folders
 
 ### 3. Generate the Distributable
@@ -117,8 +117,8 @@ Execute the following command in Windows PowerShell
 wsl --shutdown
 ```
 
-> * Run `wsl -t BdfServer` won't work by our experience, your milage may very
-> * `BdfServer` can restarted automatically there is a Windows program that was connected to it was still running, which will interfere with the next step
+> * Running `wsl -t BdfServer` won't work in our experience; your mileage may vary
+> * `BdfServer` can be restarted automatically if a Windows program connected to it is still running, which will interfere with the next step
 
 #### 3.3. Export BDF Distributable
     
@@ -142,12 +142,12 @@ wsl --import BdfServer <InstallLocation> BdfServer.tar.gz --version 2
 ```
 or
 ``` PowerShell
-wsl --import BdfServer <InstallLocation> BdfServer.vhdx --version 2 --hvd
+wsl --import BdfServer <InstallLocation> BdfServer.vhdx --version 2 --vhd
 ```
 
 > * Please replace `<InstallLocation>` with the desired installation location.
 > * Instead of `BdfServer` you can any name you like.
-> * One may BDF as norm as this point. However, it's highly recommend to add a non-root account and set it as a default login account. The instructions can be found [here](https://wsldl-pg.github.io/ArchW-docs/How-to-Setup/#setup-after-install). 
+> * One may use BDF as normal at this point. However, it's highly recommended to add a non-root account and set it as the default login account. The instructions can be found [here](https://wsldl-pg.github.io/ArchW-docs/How-to-Setup/#setup-after-install).
 
 ## Frequently Used Commands
 * To run `BdfServer` commands through PowerShell, e.g., `htop`, use the following command
@@ -174,7 +174,7 @@ or
 wsl -d BdfServer mv MyWindowsFile.txt ~/tasks/
 ```
 
-* To copy or move a file from a `BdfServer` directory, e.g., ~/tasks, to current Windows directory to use the following command in Windows PowerShell
+* To copy or move a file from a `BdfServer` directory (e.g., `~/tasks`) to the current Windows directory, use the following command in Windows PowerShell
 ``` PowerShell
 wsl -d BdfServer cp ~/tasks/MyLinuxFile.txt .
 ```
@@ -193,12 +193,12 @@ wsl -d BdfServer bdf BdfCalculationInputFile.inp
 wsl -d BdfServer --cd ~/tasks/ explorer.exe .
 ```
 
-> * Depending on WSL version, executing BDF directory in Windows directory may or may not be a good idea. For WSL1, it's perfectly fine to do so. In WSL2, however, the IO operation between Windows directories and WSL directories is very slow, which made this approach undesirable. Therefore, we'd recommend copy the BDF input file inside a BdfServer directory and perform the BDF calculation inside the BdfServer directory for WSL2. The PowerShell commend for copy and move files between Windows and WSL directories is listed above.
+> * Depending on the WSL version, executing BDF directly in a Windows directory may or may not be a good idea. For WSL 1, it's perfectly fine to do so. In WSL 2, however, IO operations between Windows directories and WSL directories are very slow, which makes this approach undesirable. Therefore, for WSL 2, we'd recommend copying the BDF input file into a BdfServer directory and performing the BDF calculation inside the BdfServer directory. The PowerShell commands for copying and moving files between Windows and WSL directories are listed above.
 
 ## Notes
-* BDF Distributable Blank (BDB) is a distributable WSL mirror like the BDF Distributable (BD). The difference is that BDB does not have BDF installed, what it has installed are the dependent libraries and compilation toolchains for compile and install BDF. Therefore, BDB is much smaller than BD and can be reused for years (update it yearly is still recommended), and BD should be replaced by a newer version every time BDF updates.
-* Do *not* set password for `root` account. Do *not* add any additional account.
-* Since the Distributable contains not only compiled BDF program but also dependence, its file may be as large as 10 GB. Distributor should choose the distribution media accordingly.
+* BDF Distributable Blank (BDB) is a distributable WSL image, similar to the BDF Distributable (BD). The difference is that BDB does not have BDF installed; what it has installed are the dependency libraries and compilation toolchains needed to compile and install BDF. Therefore, BDB is much smaller than BD and can be reused for years (updating it yearly is still recommended), while BD should be replaced by a newer version every time BDF is updated.
+* Do *not* set a password for the `root` account. Do *not* add any additional accounts.
+* Since the Distributable contains not only the compiled BDF program but also its dependencies, the file may be as large as 10 GB. Distributors should choose the distribution media accordingly.
 
 
 
@@ -210,7 +210,7 @@ wsl -d BdfServer --cd ~/tasks/ explorer.exe .
 ## 前提条件
 本文档假设您的计算机已
 * 启用 WSL, 并已
-* 更新 WSL 至一支持 WSL 2 的版本 (可选, 但强烈建议.)
+* 更新 WSL 至一支持 WSL 2 的版本 (可选, 但强烈建议)
 
 > * WSL 的安装步骤可参见 [Install WSL | Microsoft Learn](https://learn.microsoft.com/en-us/windows/wsl/install).
 > * 若要安装 WSL 虚拟化技术必须被 (从 BIOS 或 UEFI 里) 启用. 要检查您的计算机是否已经启用虚拟化技术可查看 Windows 任务管理器 > 性能 > CPU > 虚拟化.
@@ -228,7 +228,7 @@ wsl -d BdfServer --cd ~/tasks/ explorer.exe .
  wsl --import BdfServer <InstallLocation> BdfDistributableBlank.tar.gz --version 2
  ```
 
-要确认新的distro 以被成功注册可以运行下面的命令
+要确认新的 distro 已被成功注册, 可以运行下面的命令
 `wsl -l -v`.
 您应期待类似下面的内容被打印至屏幕 (注意最后一行)
  ``` console
@@ -282,11 +282,11 @@ cp /mnt/windows/path/to/bdf-pkg.tar.gz .
 ``` bash
 cp /mnt/d/data/bdf-pkg.tar.gz . 
 ```
-如果 `bdf-pkg.tar.gz` 可以在 Windows 下的路径 `D:\data\bdf-pkg.tar.gz` 中被找到
+如果 `bdf-pkg.tar.gz` 可在 Windows 路径 `D:\data\bdf-pkg.tar.gz` 下被找到
 
 #### 2.4. 编译并安装 BDF
 
-BDF Distributable Blank (BDF) 自带一 `compile_and_install_bdf` 脚本. 在 Linux Bash shell 中运行 `compile_and_install_bdf` 便可自动使用 BDB 捆绑的线性代数库编译 BDF 并将 BDF 安装至一合适的路径下. 若 BDF 的源代码所在文件夹为 `bdf-pkg` 且位于当前工作目录或当前用户的 home 路径下, 则您仅需运行下面的命令:
+BDF Distributable Blank (BDB) 自带一个 `compile_and_install_bdf` 脚本. 在 Linux Bash shell 中运行 `compile_and_install_bdf` 便可自动使用 BDB 捆绑的线性代数库编译 BDF, 并将 BDF 安装至一合适的路径下. 若 BDF 的源代码所在文件夹为 `bdf-pkg` 且位于当前工作目录或当前用户的 home 路径下, 则您仅需运行下面的命令:
 ``` bash
 compile_and_install_bdf
 ```
@@ -308,7 +308,7 @@ compile_and_install_bdf -DENABLE_LICENSE=YES -DONLY_BDFPRO=YES
 * 删除 BDF 源代码文件夹, 若尚未删除
 * 删除 pacman 的全部缓存文件, 若尚未删除 (执行 `pacman -Scc` 并对所有选择都选择 `Y`)
 * 删除 IDE 及代码编辑器 (如, Visual Studio, Visual Studio Code, CLion, Rider, 及 PyCharm) 的缓存文件及文件夹, 若您曾将它们连接至 `BdfServer`
-* 删除其它零时文件及文件夹
+* 删除其它临时文件及文件夹
 
 ### 3. 产生可分发镜像
 
@@ -347,12 +347,12 @@ wsl --import BdfServer <InstallLocation> BdfServer.tar.gz --version 2
 ```
 或
 ``` PowerShell
-wsl --import BdfServer <InstallLocation> BdfServer.vhdx --version 2 --hvd
+wsl --import BdfServer <InstallLocation> BdfServer.vhdx --version 2 --vhd
 ```
 
 > * 请将 `<InstallLocation>` 替换为真正的安装路径.
 > * 您不一定需要将其命名为 BdfServer.
-> * 由此, 用户便可正常使用 BDF. 然而, 我们强烈建议用户在 `BdfServer` 添加一非 root 账户并将该账户设为默认登录账户. 该步骤的指南可参见[此处](https://wsldl-pg.github.io/ArchW-docs/locale/zh-CN/How-to-Setup/#%E5%AE%8C%E6%88%90%E5%AE%89%E8%A3%85%E5%90%8E%E7%9A%84%E6%93%8D%E4%BD%9C).
+> * 由此, 用户便可正常使用 BDF. 然而, 我们强烈建议用户在 `BdfServer` 中添加一个非 root 账户, 并将该账户设为默认登录账户. 该步骤的指南可参见[此处](https://wsldl-pg.github.io/ArchW-docs/locale/zh-CN/How-to-Setup/#%E5%AE%8C%E6%88%90%E5%AE%89%E8%A3%85%E5%90%8E%E7%9A%84%E6%93%8D%E4%BD%9C).
 
 ## 常用命令
 * 若需通过 PowerShell 来间接运行一个 BdfServer 上的命令, 如, `htop`, 可以使用下面的命令
@@ -401,6 +401,6 @@ wsl -d BdfServer --cd ~/tasks/ explorer.exe .
 > * 根据 WSL 的版本不同直接在 Windows 路径下直接执行 BDF 计算可能是, 也可能不是一个好的方案. 对 WSL 1 来说, 如此行没有任何问题. 对 WSL2 来说, 由于 Windows 和 WSL 文件系统间的 IO 操作很慢, 使得此举不优. 因此, 对 WSL 2 来说, 我们建议 将BDF 输入文件复制至 BdfServer 的文件系统内并在 BdfServer 的文件系统内执行计算. 用于在 Windows 和 WSL 文件系统间进行文件复制和剪切的命令在上文已给出.
 
 ## 备注
-* BDF Distributable Blank (BDB) 是一类似于可分发的BDF WSL 镜像 (BD). 它们的区别在于 BDB 上没有安装 BDF, 其上装有的是编译和安装 BDF 所需的依赖库及软件. 因此 BDB 的文件大小远远小于 BD 且可被重用数年 (我们仍然建议每年更新 BDB 一次), 而 BD 文件很大且每次 BDF 更新时都应被完全替换.
+* BDF Distributable Blank (BDB) 是一个类似于可分发的 BDF WSL 镜像 (BD) 的镜像. 它们的区别在于 BDB 上没有安装 BDF, 其上装有的是编译和安装 BDF 所需的依赖库及软件. 因此 BDB 的文件大小远远小于 BD 且可被重用数年 (我们仍然建议每年更新 BDB 一次), 而 BD 文件很大且每次 BDF 更新时都应被完全替换.
 * 请 *勿* 为 `root` 账号设置密码. 请 *勿* 添加任何额外的账号.
-* 由于可分发镜像中不仅包含 BDF 且包含它的依赖项, 可分发镜像文件的的大小可达 10 GB. 分发者应合理选择分发介质.
+* 由于可分发镜像中不仅包含 BDF 且包含它的依赖项, 可分发镜像文件的大小可达 10 GB. 分发者应合理选择分发介质.
